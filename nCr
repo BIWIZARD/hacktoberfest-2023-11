@@ -1,0 +1,26 @@
+Given two integers n and r, find nCr. Since the answer may be very large, calculate the answer modulo 109+7.
+
+Example 1:
+
+Input: n = 3, r = 2
+Output: 3
+Explaination: 3C2 = 3. 
+
+
+def nCrModP(n, r, p):
+    if r == 0:
+        return 1
+    
+    fact = [1] * (n + 1)
+    
+    for i in range(2, n + 1):
+        fact[i] = (fact[i - 1] * i) % p
+    
+    return (fact[n] // (fact[r] * fact[n - r])) % p
+
+# Example usage:
+n = 3
+r = 2
+p = 10**9 + 7
+result = nCrModP(n, r, p)
+print(result)
